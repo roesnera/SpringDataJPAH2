@@ -11,15 +11,17 @@ import java.util.stream.Collectors;
 @Service
 public class UserService {
     private final UserRepository userRepository;
+    private final UserToDTOMapper userToDtoMapper;
 
-    public UserService(UserRepository uR){
+    public UserService(UserRepository uR, UserToDTOMapper utdtom){
         userRepository = uR;
         userRepository.save(new User("Adam", "password"));
+        userToDtoMapper = utdtom;
     }
 
     public List<UserDTO> getAllUsers(){
         return userRepository.findAll().stream()
-                    .map(i -> new UserDTO(i.getId(), i.getUsername()))
+                    .map(userToDtoMapper)
                     .collect(Collectors.toList());
     }
 }
