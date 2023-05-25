@@ -1,5 +1,6 @@
 package org.skillgrowth.springdatajpah2.controllers;
 
+import org.skillgrowth.springdatajpah2.dtos.UserDTO;
 import org.skillgrowth.springdatajpah2.models.User;
 import org.skillgrowth.springdatajpah2.services.UserService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +20,7 @@ public class Controller {
     }
 
     @GetMapping
-    public List<User> getAllUsers(){
+    public List<UserDTO> getAllUsers(){
         return userService.getAllUsers();
     }
 }
